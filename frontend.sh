@@ -16,12 +16,16 @@ unzip /tmp/frontend.zip
 echo -e "\e[35mCopying Nginx Config for RoboShop\e[0m"
 cp ${code_dir}/configs/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf
 
+## inside  the roboshop-shell directory only the configs file is available, so we have to change the location so we used
+## -the variable code-dir which is already declared
+
+
 echo -e "\e[35mEnabling nginx\e[0m"
 systemctl enable nginx
 
 echo -e "\e[35mStarting nginx\e[0m"
 systemctl restart nginx
 
-## RoboShop Config is not copied
+
 ## If any command is errored or failed, we need to stop the script
 
