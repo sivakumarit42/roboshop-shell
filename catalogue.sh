@@ -14,7 +14,7 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
-cp configs/mongodb.repo /etc/yum.repos.d/mongo.repo
+cp configs/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y
 
-mongo --host mongodb.devopsd72.online </app/schema/catalogue.js
+mongo --host mongodb.devopsb71.online </app/schema/catalogue.js
