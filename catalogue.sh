@@ -10,13 +10,13 @@ cd /app
 unzip /tmp/catalogue.zip
 cd /app
 npm install
-cp ${code_dir}configs/catalogue.service /etc/systemd/system/catalogue.service
+cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
-cp ${code_dir}configs/mongodb.repo /etc/yum.repos.d/mongodb.repo
+cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y
 
 mongo --host mongodb.devopsb72.online </app/schema/catalogue.js
