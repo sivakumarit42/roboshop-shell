@@ -28,9 +28,8 @@ systemctl enable nginx &>>${log_file}
 print_head "Starting nginx"
 systemctl restart nginx &>>${log_file}
 
-## inside  the roboshop-shell directory only the configs file is available, so we have to change the location so we used
+## inside  the roboshop-shell directory,the configs file is available, so we have to change the location so we used
 ## -the variable code-dir which is already declared
-
 
 echo -e "\e[35mEnabling nginx\e[0m"
 systemctl enable nginx &>>${log_file}
