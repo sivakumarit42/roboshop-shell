@@ -1,10 +1,4 @@
-code_dir=$(pwd)
-log_file=/tmp/roboshop.log
-rm -f ${log_file}
-
-print_head(){
-  echo -e "\e[36m$1\e[0m"
-}
+source common.sh
 
 print_head "Downloading nodejs repository"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
@@ -13,10 +7,10 @@ print_head "installing nodejs"
 yum install nodejs -y &>>${log_file}
 
 print_head "Creating robshop user"
-useradd roboshop
+useradd roboshop &>>${log_file}
 
 print_head "Creating app directory"
-mkdir /app
+mkdir /app &>>${log_file}
 
 print_head "Removing old content"
 rm -rf /app/* &>>${log_file}
