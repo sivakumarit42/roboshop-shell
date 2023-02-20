@@ -5,7 +5,7 @@
        else
          echo failure
          echo "Read the log file ${log_file} for more information about error"
-         exit
+         exit 1
          fi
 
 
