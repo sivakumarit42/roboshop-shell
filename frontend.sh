@@ -25,6 +25,7 @@ systemctl enable nginx &>>${log_file}
 print_head "Starting nginx"
 systemctl restart nginx &>>${log_file}
 
+
 echo -e "\e[35mEnabling nginx\e[0m"
 systemctl enable nginx &>>${log_file}
 
