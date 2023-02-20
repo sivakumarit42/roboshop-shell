@@ -27,13 +27,13 @@ print_head "Removing old content"
 rm -rf /app/* &>>${log_file}
 status_check $?
 
-print_head "Downloading catalogue repository"
-curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log_file}
+print_head "Downloading user repository"
+curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>>${log_file}
 status_check $?
 cd /app
 
-print_head "Extracting catalogue content"
-unzip /tmp/catalogue.zip &>>${log_file}
+print_head "Extracting user content"
+unzip /tmp/user.zip &>>${log_file}
 status_check $?
 
 print_head "installing nodejs dependices"
@@ -41,20 +41,21 @@ npm install &>>${log_file}
 status_check $?
 
 print_head "Copy SystemD Service File"
-cp ${code_dir}/configs/catalogue.service /etc/systemd/system/catalogue.service &>>${log_file}
+cp ${code_dir}/configs/user.service /etc/systemd/system/user.service &>>${log_file}
 status_check $?
 
 print_head "Reload deamon"
 systemctl daemon-reload &>>${log_file}
 status_check $?
 
-print_head "Enabling Catalogue service"
-systemctl enable catalogue &>>${log_file}
+print_head "Enabling user service"
+systemctl enable user &>>${log_file}
 status_check $?
 
-print_head "Restart Catalogue service"
-systemctl restart catalogue &>>${log_file}
+print_head "Restart user service"
+systemctl restart user &>>${log_file}
 status_check $?
+
 
 print_head "Copying mongodb.repo"
 cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
@@ -65,6 +66,6 @@ yum install mongodb-org-shell -y &>>${log_file}
 status_check $?
 
 print_head "load schema"
-mongo --host mongodb.devopsb72.online </app/schema/catalogue.js &>>${log_file}
+mongo --host mongodb.devopsb72.online </app/schema/user.js &>>${log_file}
 status_check $?
 
