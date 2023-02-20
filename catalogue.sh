@@ -10,11 +10,17 @@ yum install nodejs -y &>>${log_file}
 status_check $?
 
 print_head "Creating robshop user"
-useradd roboshop &>>${log_file}
+id roboshop  &>>${log_file}              # find the roboshop user is already exist or not by using command "id"..
+                                          ##-it will return $? '0' if it is already available
+if [ $? -ne 0 ]; then
+  useradd roboshop &>>${log_file}
+fi
 status_check $?
 
 print_head "Creating app directory"
-mkdir /app &>>${log_file}
+if [ ! -d /app ]; then
+  mkdir /app &>>${log_file}
+fi
 status_check $?
 
 print_head "Removing old content"
