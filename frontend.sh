@@ -3,11 +3,12 @@ source common.sh
 
 print_head "Installing nginx"
 yum install nginx -y &>>${log_file}
-status_check.sh $?
+status_check $?
 
 
 print_head "Removing Old Content"
 rm -rf /usr/share/nginx/html/* &>>${log_file}
+status_check $?
 
 print_head "Downloading Frontend Content"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${log_file}
