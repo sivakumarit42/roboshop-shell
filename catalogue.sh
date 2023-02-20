@@ -50,6 +50,7 @@ print_head "Restart Catalogue service"
 systemctl restart catalogue &>>${log_file}
 status_check $?
 
+
 print_head "Copying mongodb.repo"
 cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
 
