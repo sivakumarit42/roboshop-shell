@@ -1,0 +1,12 @@
+[Unit]
+Description = Dispatch Service
+[Service]
+User=roboshop
+Environment=AMQP_HOST=rabbitmq.devops72.online
+Environment=AMQP_USER=roboshop
+Environment=AMQP_PASS=ROBOSHOP_USER_PASSWORD
+ExecStart=/app/dispatch
+SyslogIdentifier=dispatch
+
+[Install]
+WantedBy=multi-user.target
