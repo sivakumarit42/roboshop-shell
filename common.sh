@@ -92,5 +92,3 @@ status_check $?
 schema_setup
 
 }
-
-}
