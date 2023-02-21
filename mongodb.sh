@@ -1,5 +1,5 @@
 source common.sh
-source status_check.sh
+
 
 print_head "setup mongodb repository"
 cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongo.repo &>>${log_file}
