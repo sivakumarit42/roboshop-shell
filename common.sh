@@ -17,6 +17,22 @@ status_check(){
          fi
 }
 
+schema_setup(){
+  if [ ${schema-type} == "mongo" ]; then
+  print_head "Copying mongodb.repo"
+  cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+  status_check $?
+
+  print_head "installing mongodb"
+  yum install mongodb-org-shell -y &>>${log_file}
+  status_check $?
+
+  print_head "load schema"
+  mongo --host mongodb.devopsb72.online </app/schema/${component}.js &>>${log_file}
+  status_check $?
+  fi
+  }
+
 nodejs(){
 print_head "Downloading nodejs repository"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
@@ -73,16 +89,8 @@ print_head "Restart ${component} service"
 systemctl restart ${component} &>>${log_file}
 status_check $?
 
+schema_setup
 
-print_head "Copying mongodb.repo"
-cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
-status_check $?
+}
 
-print_head "installing mongodb"
-yum install mongodb-org-shell -y &>>${log_file}
-status_check $?
-
-print_head "load schema"
-mongo --host mongodb.devopsb72.online </app/schema/${component}.js &>>${log_file}
-status_check $?
 }
