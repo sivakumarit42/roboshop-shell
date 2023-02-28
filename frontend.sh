@@ -31,14 +31,5 @@ print_head "Starting nginx"
 systemctl restart nginx &>>${log_file}
 status_check $?
 
-echo -e "\e[35mEnabling nginx\e[0m"
-systemctl enable nginx &>>${log_file}
-status_check $?
 
-echo -e "\e[35mStarting nginx\e[0m"
-systemctl restart nginx &>>${log_file}
-status_check $?
-
-## If any command is errored or failed, we need to stop the script
-#status of a command need to be printed
 
